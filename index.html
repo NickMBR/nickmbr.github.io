@@ -1,0 +1,38 @@
+<!doctype html>
+    <head>
+		<title>Source SDK Brasil</title>
+		<meta charset="UTF-8">
+			<link href='https://fonts.googleapis.com/css?family=Raleway:200' rel='stylesheet' type='text/css'>
+			<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet" type='text/css'>
+			<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet" type='text/css'>
+			<link href='css/sourcesdk.css' rel='stylesheet' type='text/css'>
+
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js"></script>
+			<script type="text/javascript" src="js/app.js"></script>
+			<base href="/sourcesdk">
+		</meta>
+    </head>
+    
+    <body ng-app="sourcesdk_app">
+	
+    <div id="sidebar">
+        <img class="logo" src="http://static.tumblr.com/7kha3ug/ngLo2nkdq/vhe_br_logo.png" alt="" align="center" />
+        <div class="logo tit">Source SDK<br>BRASIL</div>
+
+        <div class="buttoncontainer">
+				<a class="button button1" href="sourcesdk">Início</a>
+				<a class="button button1" href="/artigos">Artigos</a>
+				<a class="button button1" href="/oprojeto">O Projeto</a>
+				<a class="button button1" href="/downloads">Downloads</a>
+        </div>
+        
+    </div>
+    
+	<div>
+		<div ng-view id="contentbar"></div>
+	</div>
+
+    </body>
+</html>

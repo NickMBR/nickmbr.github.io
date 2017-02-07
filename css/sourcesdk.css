@@ -1,0 +1,190 @@
+/* PADRAO */
+html {
+    background: url(http://static.tumblr.com/7kha3ug/wP3o2nkdn/bg1.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-family: 'Anton';
+    font-size: 3em;
+    font-weight: 100;
+}
+
+h2 {
+    font-family: 'Anton';
+    font-size: 2em;
+    font-weight: 100;
+}
+
+hr {
+        background-color: rgb(40,40,40);
+        width: 100%; 
+        height: 1px;
+}
+
+a {
+    text-decoration: none;
+    color: #2689ae;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #296176;
+}
+
+iframe {
+    text-decoration: none;
+    border: 0;
+}
+
+/* MAIN CONTENT */
+#sidebar {
+    width: 20%;
+    height: 100vh !important;
+    overflow: auto !important;
+    
+    float: left;
+    background-color: rgba(40, 40, 40, 0.7);
+}
+
+#contentbar {
+    width: 80%;
+    height: 100vh !important;
+    overflow: auto !important;
+    
+    float: right;
+    background-color: rgba(240, 240, 240, 0.95);
+    color: rgb(60,60,60);
+}
+
+.content-wrap {
+    padding: 20px;
+}
+
+.conteudo {
+    font-family: 'Roboto';
+    font-weight: 600;
+    font-size: 1.2em;
+    color: rgb(80,80,80);
+}
+
+.peq {
+    font-size: 0.9em;
+}
+
+.fix {
+    margin-top: -20px;
+}
+
+.conteudo.artigo {
+	width: 70%;
+	text-align: justify;
+	padding-top: 20px;
+	font-size: 1.1em;
+}
+
+
+.logo {
+    padding-top: 20px;
+    display: block;
+    margin: 0 auto;
+}
+
+.tit {
+    padding-bottom: 20px;
+    display: block;
+    text-align: center;
+    
+    font-family: 'Raleway', sans-serif;
+    font-size: 2em;
+    
+    color: white;
+}
+
+/* BOTOES SIDEBAR */
+.buttoncontainer {
+    max-width: 100%;
+}
+
+.button {
+    border: none;
+    
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 2px;
+    
+    text-align: center;
+    text-decoration: none;
+    
+    display: inline-block;
+    
+    font-family: 'Roboto';
+    font-size: 1.5em;
+    
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button1 {
+    background-color: rgba(180, 180, 180, 0.1);
+    color: rgb(230, 230, 230);
+}
+
+.button1:hover {
+    color: rgb(180, 180, 180);
+}
+
+span {
+    text-decoration:none;
+    cursor:pointer;
+}
+
+/* DIV EXPANDIVEL */
+.cont-collapse {
+    width: 100%;
+    height: auto;
+    margin-bottom: 5px;
+    
+    font-family: 'Roboto';
+    font-size: 1.2em;
+    
+    background-color: rgb(40, 40, 40);
+    cursor: pointer;
+    color: white;
+}
+
+.perg-wrap {
+    padding: 10px;
+}
+
+.cont-collapse-exp{
+    display: none;
+    padding : 15px;
+    background-color: rgb(220, 220, 220);
+}
+
+/* DOWNLOADS */
+.down-desc {
+    margin-top: 0px;
+    font-size: 16px;
+}
+
+.down-cont {
+    font-family: 'Roboto';
+    font-size: 1em;
+}
+
+.down-cont a {
+    font-size: 1.5em;
+}
