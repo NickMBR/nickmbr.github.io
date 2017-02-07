@@ -4,28 +4,28 @@ angular.module('sourcesdk_app', ['ngRoute'])
   .config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
       $routeProvider
-      .when('/sourcesdk', {
-        templateUrl: 'sourcesdk.html'
+      .when('/inicio', {
+        templateUrl: 'sourcesdk/inicio.html'
       })
       .when('/oprojeto', {
-        templateUrl: 'oprojeto.html'
+        templateUrl: 'sourcesdk/oprojeto.html'
       })
       .when('/faq', {
-        templateUrl: 'faq.html',
+        templateUrl: 'sourcesdk/faq.html',
         controller: 'cont_collapseCtrl'
       })
       .when('/artigos', {
-        templateUrl: 'artigos.html'
+        templateUrl: 'sourcesdk/artigos.html'
       })
       .when('/downloads', {
-        templateUrl: 'downloads.html',
+        templateUrl: 'sourcesdk/downloads.html',
         controller: 'cont_collapseCtrl'
       })
       .when('/A-Seriedade-de-ser-um-Level-Designer', {
-        templateUrl: 'artigos/A-Seriedade-de-ser-um-Level-Designer.html'
+        templateUrl: 'sourcesdk/artigos/A-Seriedade-de-ser-um-Level-Designer.html'
       })
       .otherwise({
-        templateUrl: 'sourcesdk.html',
+        templateUrl: 'sourcesdk/inicio.html',
       });
 
       $locationProvider.hashPrefix('!');
