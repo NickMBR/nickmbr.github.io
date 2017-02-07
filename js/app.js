@@ -28,7 +28,7 @@ angular.module('sourcesdk_app', ['ngRoute'])
         templateUrl: 'sourcesdk.html',
       });
 
-      $locationProvider.html5Mode(true);
+      $locationProvider.hashPrefix('!');
   }])
 })(window.angular);
 
