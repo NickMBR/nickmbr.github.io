@@ -24,6 +24,9 @@ angular.module('sourcesdk_app', ['ngRoute'])
       .when('/A-Seriedade-de-ser-um-Level-Designer', {
         templateUrl: 'sourcesdk/artigos/A-Seriedade-de-ser-um-Level-Designer.html'
       })
+      .when('/Uso-de-modelos-na-Source-Engine', {
+        templateUrl: 'sourcesdk/artigos/Uso-de-modelos-na-Source-Engine.html'
+      })
       .otherwise({
         templateUrl: 'sourcesdk/inicio.html',
       });

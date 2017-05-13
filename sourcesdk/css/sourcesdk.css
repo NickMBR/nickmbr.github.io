@@ -26,19 +26,19 @@ h2 {
 }
 
 hr {
-        background-color: rgb(40,40,40);
+        background-color: rgb(230,230,230);
         width: 100%; 
-        height: 1px;
+        height: 0.2px;
 }
 
 a {
     text-decoration: none;
-    color: #2689ae;
+    color: #74b3e8;
 }
 
 a:hover {
     text-decoration: none;
-    color: #296176;
+    color: #5e92be;
 }
 
 iframe {
@@ -62,8 +62,8 @@ iframe {
     overflow: auto !important;
     
     float: right;
-    background-color: rgba(240, 240, 240, 0.95);
-    color: rgb(60,60,60);
+    background-color: rgba(40, 40, 40, 0.95);
+    color: rgb(210,210,210);
 }
 
 .content-wrap {
@@ -74,7 +74,7 @@ iframe {
     font-family: 'Roboto';
     font-weight: 600;
     font-size: 1.2em;
-    color: rgb(80,80,80);
+    color: rgb(180,180,180);
 }
 
 .peq {
@@ -152,16 +152,16 @@ span {
 
 /* DIV EXPANDIVEL */
 .cont-collapse {
-    width: 100%;
+    width: 35%;
     height: auto;
     margin-bottom: 5px;
     
     font-family: 'Roboto';
     font-size: 1.2em;
     
-    background-color: rgb(40, 40, 40);
+    background-color: #d0d0d0;
     cursor: pointer;
-    color: white;
+    color: rgb(40, 40, 40);
 }
 
 .perg-wrap {
@@ -170,8 +170,11 @@ span {
 
 .cont-collapse-exp{
     display: none;
-    padding : 15px;
-    background-color: rgb(220, 220, 220);
+    width: 30%;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    padding: 15px;
+    background-color: rgb(60, 60, 60);
 }
 
 /* DOWNLOADS */

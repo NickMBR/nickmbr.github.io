@@ -1,0 +1,77 @@
+<div>
+	<div class="content-wrap">
+		<div id="Page1" class="page">
+			<h1>Uso de Modelos na Source Engine</h1>
+			<h2 style="font-size: 1.5em; margin-top: -30px;">10/05/2017</h2>
+			<hr />
+
+			<div class="conteudo artigo">
+				Um estudo muito interessante feito pelo <a href="https://facepunch.com/member.php?u=131595" target="_blank">03C0</a>, me chamou a atenção hoje no facepunch, foi feito em Março desse ano, mas só fui ver agora. Esse estudo, a base de benchmarks, 
+				mostra como a Source pode ser manipulada a renderizar vários modelos com mínimo impacto na performance. Renderizando 2048 modelos de uma só vez.<br /><br />
+
+				No teste, foram usados 4 mapas, com 2048 modelos de árvore e alguns pontos cruciais que fazem esse método funcionar:<br /><br />
+
+				No 1º mapa, as árvores são colocadas individualmente, cada uma com seu modelo de colisão (Vphysics Collision Model) e usando 2 texturas separadas para as árvores, 
+				sendo 1 delas com alpha-test (transparencia das folhas) e uma opaca para o tronco da árvore.<br /><br />
+
+				O 2º Mapa é exatamente igual ao primeiro, porém com uma só textura para as árvores usando o alpha-test. (Textura da árvore em um só arquivo)<br /><br />
+
+				No 3º Mapa, as 2048 árvores foram compiladas em peças com 64 árvores juntas, ou seja, 64 árvores fazem parte de 1 só modelo, juntando também o collision model. 
+				Essas peças de 64 árvores foram colocadas no mapa para totalizar 2048, e usam texturas separadas como no 1º mapa.<br /><br />
+				
+				O 4º mapa é identico ao 3º, porém usa uma só textura como o 2º mapa.<br /><br />
+
+				<h2>Na Prática:</h2>
+
+				Abaixo, vocês podem conferir como a performance foi afeta por cada um desses mapas, usando o <i>cl_showfps 2</i> e <i>+showbudget:</i><br /><br />
+
+				1º Mapa, 2048 modelos e texturas separadas:<br /><br />
+				<img src="https://scontent.fcpq1-1.fna.fbcdn.net/v/t31.0-8/18449749_1327428297353579_3216370930999637283_o.jpg?oh=6c5e1813eb9f3d7858dd413f8c2b8c6f&oe=597A9E47" width="960px" height="540px"/><br /><br />
+
+				2º Mapa, 2048 modelos separados com uma só textura:<br /><br />
+				<img src="https://scontent.fcpq1-1.fna.fbcdn.net/v/t31.0-8/18358624_1327430094020066_3623499649112774991_o.jpg?oh=93c4a5f755204ddf1474546a53111a36&oe=59B4C9AD" width="960px" height="540px"/><br /><br />
+
+				3º Mapa, 2048 modelos em peças de 64 árvores com texturas separadas:<br /><br />
+				<img src="https://scontent.fcpq1-1.fna.fbcdn.net/v/t31.0-8/18402350_1327430730686669_1225530991657233004_o.jpg?oh=a6a6bb96be837619bb972ae02dfe17e7&oe=59C28254" width="960px" height="540px"/><br /><br />
+
+				4º Mapa, 2048 modelos em peças de 64 árvores com uma só textura:<br /><br />
+				<img src="https://scontent.fcpq1-1.fna.fbcdn.net/v/t31.0-8/18358743_1327431114019964_6446837126699127534_o.jpg?oh=0d6003fb06324a307b9b5914f714415d&oe=59B6C1CE" width="960px" height="540px"/><br /><br />
+				
+				<h2>Resultado:</h2>
+
+				Podemos ver uma melhora drástica de performance, nesses benchs, é possível notar que com o mesmo numero de polígonos, mas usando-os em conjunto de vários modelos em um só, 
+				a Source Engine realiza menos Draw Calls para a CPU, ou seja, Quando a engine renderiza um só modelo de 20000 polígonos, é mais rápido do que renderizar 200 polígonos centenas de vezes.<br /><br />
+
+				1º Mapa: 40 fps | 26.1 ms<br />
+				2º Mapa: 82 fps | 12.3 ms<br />
+				3º Mapa: 295 fps | 3.4 ms<br />
+				4º Mapa: 296 fps | 3.4 ms<br /><br />
+
+				No 3º e 4º Mapa, o FPS bateu no máximo, mantendo 3.4 ms de frame time. Inacreditavel!<br /><br />
+
+				<h2>Conslusão:</h2>
+
+				Quando usarem vários modelos em uma área do mapa que estará sempre no campo de visão do jogador e portanto, sempre renderizada, a melhor forma de otimização é juntar todos os modelos
+				 em um só e compila-lo. Lembre-se que os collision models também terão que ser compilados juntos, isso pode acarretar em alguns erros ou limites.<br /><br />
+
+				Espero que isso ajude vocês em seus futuros mapas!<br /><br />
+
+				Teste realizado em meu pc, vocês podem conferir na íntegra os testes feitos pelos membros do facepunch incluindo o 03C0 aqui: <a href="https://facepunch.com/showthread.php?t=1556407" target="_blank">https://facepunch.com/showthread.php?t=1556407</a>
+
+			</div>
+			
+		</div>
+
+			<br /><br /><br /><hr />
+			<div class="conteudo peq">
+				Source SDK Brasil é mantido por <a href="https://www.facebook.com/NickMBR1/" target="_blank">NickMBR</a>.<br />
+				Todos os Direitos Reservados.<br />
+				<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title" style="display: none;">Documentação SourceSDK</span>
+				<a xmlns:cc="http://creativecommons.org/ns#" href="https://www.facebook.com/NickMBR1/" property="cc:NickMBR" rel="cc:nickmbr.tumblr.com" style="display: none;">NickMBR</a>
+				<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+				<img alt="Licença Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+				<a xmlns:dct="http://purl.org/dc/terms/" href="nickmaps.tumblr.com/sourcesdk" rel="dct:source" style="display: none;">nickmaps.tumblr.com/sourcesdk</a>
+			</div>
+		
+	</div>
+</div>
