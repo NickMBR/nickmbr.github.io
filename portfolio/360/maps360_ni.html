@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Cobertura | 360</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		
+		<link href="../css/main.css" rel="stylesheet">
+		<script src="../js/jquery-1.11.0.min.js"></script>
+		
+		<style>
+			body {
+				background-color: #000000;
+				margin: 0px;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div class="pageload">
+			<div class="loading-container">
+				<div class="loading-logo"></div>
+				<div id="ShowText" class="loading-text2"></div>
+			</div>
+		</div>
+	
+		<div id="container">
+			<div class="overlay"></div>
+			<img class="logo" src="../img/logos/nickmbr_logo_flat.png" />
+		</div>
+
+		<script src="../js/three.min.js"></script>
+
+		<script>
+			
+			var camera, scene, renderer;
+
+			var lon = 0,lat = 0, phi = 0, theta = 0, imgRotation = 0;
+			
+			THREE.DefaultLoadingManager.onProgress = function ( item, loaded, total ) {
+				console.log( item, loaded, total );
+				if (loaded === 2) {
+					jQuery(function($){
+						$(".pageload").fadeOut("slow");
+					});
+				};
+			};
+
+			init();
+			animate();
+
+			function init() {
+				var container, mesh;
+				var listener = new THREE.AudioListener();
+
+				container = document.getElementById( 'container' );
+
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1100 );
+				camera.target = new THREE.Vector3( 0, 0, 0 );
+
+				scene = new THREE.Scene();
+
+				var geometry = new THREE.SphereGeometry( 500, 60, 40 );
+				geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
+				
+				var texloader = new THREE.TextureLoader();
+				texloader.load(
+					'../img/360/cobertura360.jpg', function ( texture ) {
+						material = new THREE.MeshBasicMaterial( { map: texture } );
+						var mesh = new THREE.Mesh( geometry, material );
+						scene.add( mesh );
+					}
+				);
+				
+				texloader.load( '../img/360/cobertura_natal360.jpg' );
+				
+				/*material = new THREE.MeshBasicMaterial( {
+					map: THREE.ImageUtils.loadTexture( 'img/cobertura360.jpg' )
+				} );
+				
+				mesh = new THREE.Mesh( geometry, material );
+				scene.add( mesh );*/
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+
+				window.addEventListener( 'resize', onWindowResize, false );
+			}
+			
+			/*material.map.image.src = 'img/test.jpg';
+			material.map.needsUpdate = true;
+			mesh.rotation.x = -10 * Math.PI / 180;
+			mesh.rotation.z = 30 * Math.PI / 180;*/
+			
+			var imgmaps = [
+			  '../img/360/cobertura360.jpg', 
+			  '../img/360/cobertura_natal360.jpg'];
+			var current = 0;
+		
+			function nextBackground() {
+				material.map.image.src = imgmaps[current = ++current % imgmaps.length];
+				material.map.needsUpdate = true;
+			}
+
+			function onWindowResize() {
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+			}
+
+			function animate() {
+				requestAnimationFrame( animate );
+				update();
+			}
+
+			function update() {
+			
+				lon += 0.1;
+				imgRotation += 0.1;
+				
+				if (imgRotation >= 350) {nextBackground(), imgRotation = 0};
+				
+			
+				lat = Math.max( - 85, Math.min( 85, lat ) );
+				phi = THREE.Math.degToRad( 90 - lat );
+				theta = THREE.Math.degToRad( lon );
+
+				camera.target.x = 500 * Math.sin( phi ) * Math.cos( theta );
+				camera.target.y = 500 * Math.cos( phi );
+				camera.target.z = 500 * Math.sin( phi ) * Math.sin( theta );
+
+				camera.lookAt( camera.target );
+				renderer.render( scene, camera );
+			}
+		</script>
+	</body>
+</html>

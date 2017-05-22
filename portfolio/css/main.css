@@ -1,0 +1,794 @@
+/*
+	Author: NM
+	Author URI: http://nickmbr.tumblr.com/portfolio
+	Description: Personal Website and Portfolio of NickMBR
+	Version: 1.0
+*/
+
+/* ==================================================
+   Main Definitions
+================================================== */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	font-size:16px;
+	font-weight:400;
+	font-family: 'Titillium Web', sans-serif;
+}
+
+h1 {
+	font-size:3em;
+}
+
+h2 {
+	font-size:2em;
+}
+
+header {
+	width: 100%;
+	height: 100vh;
+	position: relative;
+}
+
+header .ctheader {
+	width: 100%;
+	height: 100%;
+}
+
+header.page {
+	width: 100%;
+	height: 70vh;
+	position: relative;
+}
+
+section {
+	z-index: 9998;
+}
+
+a {
+	color: #fff;
+	text-decoration: none;
+}
+
+a:hover {
+	color: rgb(220, 65, 55);
+}
+
+a.inverted {
+	color: rgb(220, 65, 55);
+}
+
+a.inverted:hover {
+	color: #fff;
+}
+
+.spacing {
+	padding-right: 4px;
+}
+
+.spacing-2 {
+	padding-right: 8px;
+}
+
+.bigspacing {
+	padding-right: 40px;
+}
+
+/* ==================================================
+   Page Load
+================================================== */
+
+.pageload {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+	
+	background: #232323;
+    background: -webkit-linear-gradient(rgb(35, 35, 35), rgb(50, 50, 50));
+    background: -o-linear-gradient(rgb(35, 35, 35), rgb(50, 50, 50));
+    background: -moz-linear-gradient(rgb(35, 35, 35), rgb(50, 50, 50));
+    background: linear-gradient(rgb(35, 35, 35), rgb(50, 50, 50));
+}
+
+.loading-container {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+
+.loading-logo {
+    width: 100%;
+    height: 100px;
+	
+	background: url(../img/logos/loading.png) center no-repeat;
+    animation: loading-zoom 2s infinite easeInOutSine;
+    -o-animation: loading-zoom 2s infinite ease;
+    -ms-animation: loading-zoom 2s infinite ease;
+    -webkit-animation: loading-zoom 2s infinite ease;
+    -moz-animation: loading-zoom 2s infinite ease;
+}
+
+.loading-text {
+	margin-top: -10px;
+	color: #fff;
+	font-size: 0.8em;
+	font-style: italic;
+	
+	opacity: 0;
+	transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out;
+}
+
+.loading-logo:hover + .loading-text {
+	opacity: 1;
+	transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out;
+}
+
+.loading-text2 {
+	margin-top: -10px;
+	color: #fff;
+	font-size: 0.8em;
+	font-style: italic;
+	/*display: none;*/
+}
+
+@keyframes loading-zoom {
+    0% {
+        transform: scale(0.6);
+    }
+    50% {
+        transform: scale(0.65);
+    }
+    100% {
+        transform: scale(0.6);
+    }
+}
+
+@-o-keyframes loading-zoom {
+    0% {
+        o-transform: scale(0.6);
+    }
+    50% {
+		o-transform: scale(0.65);
+    }
+    100% {
+        o-transform: scale(0.6);
+    }
+}
+
+@-ms-keyframes loading-zoom {
+    0% {
+        -ms-transform: scale(0.5);
+    }
+    50% {
+        -ms-transform: scale(0.55);
+    }
+    100% {
+        -ms-transform: scale(0.5);
+    }
+}
+
+@-webkit-keyframes loading-zoom {
+    0% {
+        -webkit-transform: scale(0.6);
+    }
+    50% {
+        -webkit-transform: scale(0.65);
+    }
+    100% {
+         -webkit-transform: scale(0.6);
+    }
+}
+
+@-moz-keyframes loading-zoom {
+    0% {
+        moz-transform: scale(0.6);
+    }
+    50% {
+        moz-transform: scale(0.65);
+    }
+    100% {
+        moz-transform: scale(0.6);
+    }
+}
+
+/* ==================================================
+   Scrollbar
+================================================== */
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #232323;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #fff; 
+}
+
+/* ==================================================
+   Logo
+================================================== */
+
+.logo {
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right: 0;
+	margin: auto;
+}
+
+/* ==================================================
+   Map Images for Headers
+================================================== */
+
+/* Fix for IE/EDGE */
+.ctheader.bg {
+    background-size: cover;
+}
+
+.bg.cobertura {
+	background: url(../img/novidades/cobertura.jpg) center center no-repeat;
+	background-size: cover;
+}
+
+.bg.coberturanatal {
+	background: url(../img/novidades/cobertura_natal.jpg) center center no-repeat;
+	background-size: cover;
+}
+
+.bg.rostok {
+	background: url(../img/novidades/rostok5.jpg) center center no-repeat;
+	background-size: cover;
+}
+
+.bg.armyw {
+	background: url(../img/novidades/armywarehouses.jpg) center center no-repeat;
+	background-size: cover;
+}
+
+.bg.huelife {
+	background: url(../img/hu3life/hue1.jpg) center center no-repeat;
+	background-size: cover;
+}
+
+/* ==================================================
+   Blocks
+================================================== */
+
+.overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	
+	/*background: #232323;*/
+	background: url(../img/others/dot.png);
+}
+
+.divisor {
+	width: 100%;
+	position: relative;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+.container {
+	position: relative;
+	color: #fff;
+	background: #292929;
+}
+
+.sec-container {
+	width: 80%;
+	height: auto;
+	background: #353535;
+	padding: 20px;
+	margin: 0 auto;
+	margin-top: 0px;
+}
+
+.sec-container.special {
+	text-align: center;
+	padding: 0;
+	width: 100%;
+	background: #303030;
+}
+
+.sec-container.dark {
+	background: #303030;
+}
+
+.sec-container.darker {
+	background: #232323;
+}
+
+.sec-container.nobg {
+	background: transparent;
+}
+
+.content {
+	position: relative;
+	padding: 30px;
+	overflow-x: hidden;
+}
+
+.content.date {
+	padding: 15px;
+	background: #303030;
+}
+
+.content.date.tit {
+	font-size: 1.3em;
+	background: #232323;
+}
+
+.content.footer {
+	color: #909090;
+	font-weight: 400;
+}
+
+/* ==================================================
+   Feature Blocks
+================================================== */
+
+.feature {
+	width: 100%;
+}
+
+.feature.nocursor {
+	pointer-events: none;
+}
+
+.feature.left,
+.feature.right {
+	width: 50%;
+}
+
+.feature.right.about {
+	width: 47%;
+}
+
+.feature.right.date {
+	text-align: right;
+}
+
+.feature img {
+	width: 100%; 
+	height: auto;
+	margin: auto;
+	display: block;
+	cursor: pointer;
+	background-size: cover;
+}
+
+.feature iframe {
+	margin: auto;
+	display: block;
+}
+
+.feature img:hover {
+	opacity: 0.6;
+	-webkit-filter: blur(1px);
+	filter: alpha(opacity=60) blur(1px);
+}
+
+.feature img:hover + .imgtitle {
+	display: block;
+}
+
+.feature.left {
+	float: left;
+}
+
+.feature.right {
+	float: right;
+}
+
+/* ==================================================
+   Feat Blocks
+================================================== */
+
+.feat {
+	width: 100%;
+	height: auto;
+	float: left;
+}
+
+.feat-item {
+	float: left;
+	/*display: inline-block;*/
+}
+
+.feat-item.nocursor {
+	pointer-events: none;
+}
+
+.feat-item img {
+	width: 100%;
+	display: block;
+	cursor: pointer;
+}
+
+.feat-item img:hover {
+	opacity: 0.6;
+	-webkit-filter: blur(1px);
+	filter: alpha(opacity=60) blur(1px);
+}
+
+.feat-item img:hover + .imgtitle {
+	display: block;
+}
+
+.feat-item.video {
+	position:relative;
+	padding-bottom:56.25%;
+	padding-top:30px;
+	height:0;
+	overflow:hidden;
+}
+
+.feat-item.video iframe, .feat-item.video object, .feat-item.video embed {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+
+.col-5 { width: 20%; }
+.col-4 { width: 25%; }
+.col-3 { width: 33.333333%; }
+.col-2 { width: 50%; }
+.col-1 { width: 100%; }
+
+@media (max-width: 768px) {
+  .col-1,
+  .col-2,
+  .col-3,
+  .col-4,
+  .col-5{ width: 100% !important; }
+}
+
+/* ==================================================
+   Text Styling
+================================================== */
+
+.imgtitle {
+	position: relative;
+	display: none;
+	text-align: center;
+}
+
+.imgtitle p {
+	position: absolute; 
+	padding: 10px;
+	bottom: 10px; 
+	left: 0; 
+	
+	font-size: 1.2em;
+	text-shadow: 1px 1px #232323;
+	pointer-events: none;
+}
+
+.title-dest {
+	float: left;
+	margin-right: 20px;
+	width: 3%;
+	height: 75px;
+	background: rgb(220, 65, 55);
+}
+
+.title {
+	padding-left: 30px;
+	text-align: left;
+	position: relative;
+}
+
+.title.nopad {
+	padding-left: 0;
+}
+
+.title p {
+	font-weight: 600;
+	font-size: 3em;
+}
+
+.title.nopad p {
+	font-weight: 400;
+	font-size: 2em;
+}
+
+.title p.big {
+	font-weight: 600;
+	font-size: 4.5em;
+}
+
+.title p.small {
+	font-weight: 600;
+	font-size: 2.5em;
+}
+
+.title p.subtitle {
+	margin-top: -15px;
+	font-size: 1.5em;
+}
+
+.title hr {
+	position: absolute;
+	width: 60%;
+	border: 0;
+	left: 0;
+	border-top: 3px solid rgb(220, 65, 55);
+}
+
+.description {
+	text-align: left;
+	margin: 30px 0;
+}
+
+.description.nopad {
+	text-align: left;
+	margin: 0;
+}
+
+.description.border {
+	padding: 0 20px;
+	border-left: 5px solid rgb(220, 65, 55);
+}
+
+.description p {
+	font-weight: 600;
+	font-size: 1.8em;
+}
+
+.description p.small {
+	font-weight: 600;
+	font-size: 1.5em;
+}
+
+/* ==================================================
+   Deving
+================================================== */
+
+.tumblrcontact {
+	width: 100%;
+	min-height: 280px;
+	background-color: transparent; 
+}
+
+.infotab {
+	position: absolute;
+	top: 0; left: 0;
+	width: 100%;
+	height: 30px;
+	padding: 10px;
+	padding-left: 70px;
+	background: #353535;
+	color: #fff;
+	z-index: 9998;
+	font-size: 0.8em;
+}
+
+.ctext {
+	position: absolute;
+	display: inline;
+	margin-left: 20px;
+	
+	/*width: 100%;
+	height: 100%;*/
+}
+
+.map360helper {
+	position: absolute;
+	top: 0; left: 0;
+	width: 30px;
+	height: 30px;
+	padding: 10px;
+	/*background: #252525;*/
+	color: #fff;
+	z-index: 9999;
+	text-align: center;
+}
+
+.map360helper .mapinfo {
+	cursor: pointer;
+}
+
+/* ==================================================
+   Buttons
+================================================== */
+
+.button {
+  	display: inline-block;
+  	margin-bottom: 0;
+  	padding: 13px 26px;
+  	-webkit-border-radius: 0;
+       -moz-border-radius: 0;
+            border-radius: 0;
+  	background-color: rgb(220, 65, 55);
+  	color: #fff;
+  	vertical-align: middle;
+  	text-align: center;
+  	text-transform: uppercase;
+  	font-weight:500;
+  	font-size: 16px;
+  	cursor: pointer;
+	border:none;
+  
+	-webkit-transition: all 0.1s linear;
+       -moz-transition: all 0.1s linear;
+         -o-transition: all 0.1s linear;
+            transition: all 0.1s linear;
+  	*border: 0;
+  	*zoom: 1;
+}
+
+/*--- Hover/Active/Focus State ---*/
+
+.button:hover,
+.button:active {
+	background-color: #fff;
+	color:#303030;
+}
+
+/* --- Button Sizes --- */
+
+.button.button-large {
+  	padding: 16px 30px;
+  	font-size: 18px;
+}
+
+.button.button-small {
+  	padding: 8px 18px;
+  	font-size: 14px;
+}
+
+.button.button-mini {
+  	padding: 4px 12px;
+  	font-size: 12px;
+}
+
+.button.button-block {
+	padding-right: 0;
+	padding-left: 0;
+	width: 100%;	
+}
+
+.button + .button {
+	margin-left: 10px;	
+}
+
+/* ==================================================
+   Alerts
+================================================== */
+
+.alert {
+  	margin-bottom: 20px;
+  	padding: 15px 35px 15px 15px;
+	border: none;
+	text-shadow: none;
+	-webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+  	background-color: #DBA571;
+	cursor: pointer;
+}
+
+.alert,
+.alert h4 {
+	color: #FFFFFF;
+}
+
+.alert h4 {
+  	margin: 0;
+}
+
+.alert-standard {
+  	background-color: #3C3F45;
+}
+
+.alert-success {
+  	background-color: #1F7F5C;
+}
+
+.alert-danger,
+.alert-error {
+  	background-color: #E56C69;
+}
+
+.alert-nm {
+	background-color: rgb(220, 65, 55);
+}
+
+.alert-info {
+  	background-color: #5A9AA8;
+}
+
+.alert-block {
+  	padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.alert-block > p,
+.alert-block > ul {
+  	margin-bottom: 0;
+}
+
+.alert-block p + p {
+  	margin-top: 5px;
+}
+
+/* ==================================================
+   Navigation Menus
+================================================== */
+
+/* VERMELHO = background: rgb(220, 65, 55);*/
+
+nav {
+	position: absolute;
+	overflow: hidden;
+	
+	width: 100%;
+	height: 40px;
+	
+	bottom: 0;
+	padding-top: 10px;
+	margin: 0;
+	
+	z-index: 9998;
+	
+	background: #232323;
+	color: #fff;
+	font-size: 1.2em;
+	text-align: right;
+}
+
+nav.onleft {
+	text-align: left;
+}
+
+nav  a {
+	cursor: pointer;
+	padding: 20px 20px;
+	text-decoration: none;
+	margin-right: -6px;
+	
+	background: #232323;
+	color: #fff;
+}
+
+nav a:hover,
+nav a.active {
+    background: rgb(220, 65, 55);
+    color: #fff;
+}
+
+@media screen and (max-width: 640px) {
+	nav {
+		text-align: left;
+	}
+	
+	nav a:not(:first-child) {display: none;}
+}
+
+.fixed {
+    position: fixed;
+    top: 0;
+} 

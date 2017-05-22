@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		
+		<link href="../css/main.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<script src="../js/jquery-1.11.0.min.js"></script>
+		
+		<style>
+			body {
+				background-color: #000000;
+				margin: 0px;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div class="pageload">
+			<div class="loading-container">
+				<div class="loading-logo"></div>
+				<div id="ShowText" class="loading-text2"></div>
+			</div>
+		</div>
+		
+		<div id="container"></div>
+		<div class="infotab">
+			<a class="button button-small" href="../cobertura.html">Go Back</a>
+			<div class="ctext">
+				<i class="fa fa-arrows-alt spacing"></i> Click and Drag the mouse to move around.<br/>
+				<i class="fa fa-circle-o spacing"></i> Double Click to resume animation.
+			</div>
+		</div>
+		<div class="map360helper"><div class="mapinfo"><i class="fa fa-bars fa-2x"></i></div></div>
+
+		<script src="../js/three.min.js"></script>
+
+		<script>
+			
+			var camera, scene, renderer;
+
+			var isUserInteracting = false,
+			isWaitingInput = false,
+			onMouseDownMouseX = 0, onMouseDownMouseY = 0,
+			lon = 0, onMouseDownLon = 0,
+			lat = 0, onMouseDownLat = 0,
+			phi = 0, theta = 0;
+			
+			THREE.DefaultLoadingManager.onProgress = function ( item, loaded, total ) {
+				console.log( item, loaded, total );
+				if (loaded === 1) {
+					jQuery(function($){
+						$(".pageload").fadeOut("slow");
+					});
+				};
+			};
+
+			init();
+			animate();
+
+			function init() {
+				var container, mesh;
+				var listener = new THREE.AudioListener();
+
+				container = document.getElementById( 'container' );
+
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1100 );
+				camera.target = new THREE.Vector3( 0, 0, 0 );
+
+				scene = new THREE.Scene();
+
+				var geometry = new THREE.SphereGeometry( 500, 60, 40 );
+				geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
+				
+				var texloader = new THREE.TextureLoader();
+				texloader.load(
+					'../img/360/cobertura360.jpg', function ( texture ) {
+						material = new THREE.MeshBasicMaterial( { map: texture } );
+						var mesh = new THREE.Mesh( geometry, material );
+						scene.add( mesh );
+					}
+				);
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+
+				window.addEventListener( 'resize', onWindowResize, false );
+			}
+			
+			/*document.addEventListener( 'dblclick', onDoubleClick, false );
+			document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+			document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+			document.addEventListener( 'mouseup', onDocumentMouseUp, false );*/
+			
+			document.getElementById("container").addEventListener( 'mousedown', onDocumentMouseDown, false );
+			document.getElementById("container").addEventListener( 'mousemove', onDocumentMouseMove, false );
+			document.getElementById("container").addEventListener( 'mouseup', onDocumentMouseUp, false );
+			document.getElementById("container").addEventListener( 'dblclick', onDoubleClick, false );
+			
+			
+			jQuery(function($){
+				$('.mapinfo').on('click', function () {
+					console.log("clicked on info");
+					$('.infotab').slideToggle(400);
+				});
+			});
+
+			
+
+			function onWindowResize() {
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+			}
+			
+			function onDocumentMouseDown( event ) {
+				event.preventDefault();
+				
+				jQuery(function($){
+					$(".infotab").slideUp(400);
+				});
+
+				isUserInteracting = true;
+				isWaitingInput = true;
+
+				onPointerDownPointerX = event.clientX;
+				onPointerDownPointerY = event.clientY;
+
+				onPointerDownLon = lon;
+				onPointerDownLat = lat;
+			}
+
+			function onDocumentMouseMove( event ) {
+				if ( isUserInteracting === true ) {
+
+					lon = ( onPointerDownPointerX - event.clientX ) * 0.1 + onPointerDownLon;
+					lat = ( event.clientY - onPointerDownPointerY ) * 0.1 + onPointerDownLat;
+
+				}
+			}
+
+			function onDocumentMouseUp( event ) {
+				isUserInteracting = false;
+			}
+			
+			function onDoubleClick(event) {
+				isUserInteracting = false;
+				isWaitingInput = false;
+			}
+
+			function animate() {
+				requestAnimationFrame( animate );
+				update();
+			}
+
+			function update() {
+				if ( isUserInteracting === false  && isWaitingInput === false) {
+					lon += 0.1;
+				}
+
+				lat = Math.max( - 85, Math.min( 85, lat ) );
+				phi = THREE.Math.degToRad( 90 - lat );
+				theta = THREE.Math.degToRad( lon );
+
+				camera.target.x = 500 * Math.sin( phi ) * Math.cos( theta );
+				camera.target.y = 500 * Math.cos( phi );
+				camera.target.z = 500 * Math.sin( phi ) * Math.sin( theta );
+				camera.lookAt( camera.target );
+				
+				renderer.render( scene, camera );
+			}
+		</script>
+	</body>
+</html>
